@@ -289,12 +289,9 @@ export default {
       for (let i = 0; i < domains.length; i++) {
         let domain = domains[i];
         if (domain !== "") {
-          // check domain is valid
-          if (domain.match(/^[a-zA-Z0-9-]{1,63}(\.[a-zA-Z0-9-]{1,63})+$/)) {
-            domain = domain.trim();
-            domain = domain.replace("/r", "");
-            this.jobData.domains.push(domain);
-          }
+          domain = domain.trim();
+          domain = domain.replace("/r", "");
+          this.jobData.domains.push(domain);
         }
       }
       this.$forceUpdate();
