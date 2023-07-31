@@ -44,34 +44,34 @@
         <el-row>
           <el-col :span="22" :offset="1">
             <h3>任务明细</h3>
-            <el-table :data="domainArray" v-if="jobData.jobModel === 'DNS'">
+            <el-table :data="domainArray">
               <el-table-column prop="domain" label="域"></el-table-column>
-              <el-table-column
-                prop="name_servers"
-                label="服务器"
-              ></el-table-column>
-              <el-table-column prop="r_code" label="结果">
+              <el-table-column prop="whois_name_servers" label="DNS">
                 <template slot-scope="scope">
-                  <span v-if="scope.row.r_code === ''">未知</span>
-                  <span v-else>{{ scope.row.r_code }}</span>
+                  <span
+                    v-if="
+                      scope.row.name_servers != '' &&
+                      scope.row.whois_name_servers != ''
+                    "
+                    >{{
+                      scope.row.name_servers + scope.row.whois_name_servers
+                    }}</span
+                  >
+                  <span v-else-if="scope.row.name_servers != ''">{{
+                    scope.row.name_servers
+                  }}</span>
+                  <span v-else-if="scope.row.whois_name_servers != ''">{{
+                    scope.row.whois_name_servers
+                  }}</span>
+                  <span v-else>无</span>
                 </template>
               </el-table-column>
-              <el-table-column prop="checked" label="状态">
+              <el-table-column label="状态">
                 <template slot-scope="scope">
                   <span v-if="scope.row.checked === 'true'">taken</span>
                   <span v-else>free</span>
                 </template>
               </el-table-column>
-            </el-table>
-            <el-table
-              :data="domainArray"
-              v-else-if="jobData.jobModel === 'Whois'"
-            >
-              <el-table-column prop="domain" label="域"></el-table-column>
-              <el-table-column
-                prop="whois_name_servers"
-                label="服务器"
-              ></el-table-column>
               <el-table-column
                 prop="whois_created_date"
                 label="创建时间"
@@ -82,44 +82,10 @@
               ></el-table-column>
               <el-table-column
                 prop="whois_status"
-                label="状态"
-              ></el-table-column>
-            </el-table>
-            <el-table :data="domainArray" v-else>
-              <el-table-column prop="domain" label="域"></el-table-column>
-              <el-table-column
-                prop="name_servers"
-                label="服务器"
-              ></el-table-column>
-              <el-table-column prop="r_code" label="结果">
-                <template slot-scope="scope">
-                  <span v-if="scope.row.r_code === ''">未知</span>
-                  <span v-else>{{ scope.row.r_code }}</span>
-                </template>
-              </el-table-column>
-              <el-table-column prop="checked" label="状态">
-                <template slot-scope="scope">
-                  <span v-if="scope.row.checked === 'true'">taken</span>
-                  <span v-else>free</span>
-                </template>
-              </el-table-column>
-              <el-table-column
-                prop="whois_name_servers"
-                label="Whois服务器"
-              ></el-table-column>
-              <el-table-column
-                prop="whois_created_date"
-                label="Whois创建时间"
-              ></el-table-column>
-              <el-table-column
-                prop="whois_expiration_date"
-                label="Whois过期时间"
-              ></el-table-column>
-              <el-table-column
-                prop="whois_status"
                 label="Whois状态"
               ></el-table-column>
             </el-table>
+
             <el-pagination
               background
               layout="prev, pager, next"
