@@ -171,7 +171,7 @@ export default {
         percentage: 0,
         status: 0,
       },
-      models: ["DNS", "Whois", "混合"],
+      models: ["DNS", "Whois", "WhoisNoProxy"],
       page: 1,
       jobHistory: [],
       jobCount: 0,

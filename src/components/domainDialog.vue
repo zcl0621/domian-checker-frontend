@@ -8,7 +8,7 @@
       width="80%"
     >
       <el-table :data="domainArray">
-        <el-table-column prop="domain" label="域"></el-table-column>
+        <el-table-column prop="domain" label="Domain"></el-table-column>
         <el-table-column prop="whois_name_servers" label="DNS">
           <template slot-scope="scope">
             <span
@@ -27,7 +27,7 @@
             <span v-else>无</span>
           </template>
         </el-table-column>
-        <el-table-column label="状态">
+        <el-table-column label="Status">
           <template slot-scope="scope">
             <span v-if="scope.row.checked === 'true'">taken</span>
             <span v-else>free</span>
@@ -35,15 +35,15 @@
         </el-table-column>
         <el-table-column
           prop="whois_created_date"
-          label="创建时间"
+          label="Created Date"
         ></el-table-column>
         <el-table-column
           prop="whois_expiration_date"
-          label="过期时间"
+          label="Expires Date"
         ></el-table-column>
         <el-table-column
           prop="whois_status"
-          label="Whois状态"
+          label="Domain Status"
         ></el-table-column>
       </el-table>
       <el-pagination
