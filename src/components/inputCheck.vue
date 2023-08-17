@@ -69,7 +69,8 @@
               <el-table-column label="Status">
                 <template slot-scope="scope">
                   <span v-if="scope.row.checked === 'true'">taken</span>
-                  <span v-else>free</span>
+                  <span v-else-if="scope.row.checked === 'false'">free</span>
+                  <span v-else>error</span>
                 </template>
               </el-table-column>
               <el-table-column
